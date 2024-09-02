@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.play.services.location)
+    implementation(libs.lottie)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

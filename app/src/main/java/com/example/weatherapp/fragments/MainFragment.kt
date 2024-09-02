@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
+import com.airbnb.lottie.LottieDrawable
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -44,7 +45,7 @@ class MainFragment : Fragment() {
         HoursFragment.newInstance(), DaysFragment.newInstance()
     )
     private val tList = listOf(
-        "Hours", "Days"
+       "Hours", "Days"
     )
     private lateinit var pLauncher: ActivityResultLauncher<String>
     private lateinit var binding: FragmentMainBinding
@@ -60,6 +61,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAnimation()
         checkPermission()
         init()
         updateCurrentCard()
@@ -136,6 +138,8 @@ class MainFragment : Fragment() {
             tvCondition.text = it.condition
             tvMaxMin.text = if(it.currentTemp.isEmpty()) "" else maxMinTemp
             Picasso.get().load("https:" + it.imageUrl).into(imWeather)
+            binding.WaitingAnimation.pauseAnimation()
+            binding.WaitingAnimation.visibility = View.GONE
         }
     }
 
@@ -209,6 +213,15 @@ class MainFragment : Fragment() {
             weatherItem.hours
         )
         model.liveDataCurrent.value = item
+    }
+
+
+    private fun initAnimation() = with(binding){
+        WaitingAnimation.setMinProgress(0.0f)
+        WaitingAnimation.setMaxProgress(1.0f)
+        WaitingAnimation.repeatCount = LottieDrawable.INFINITE
+        WaitingAnimation.repeatMode = LottieDrawable.RESTART
+        WaitingAnimation.playAnimation()
     }
 
     companion object {

@@ -23,7 +23,7 @@ class HoursFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHoursBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,6 +55,7 @@ class HoursFragment : Fragment() {
                 (hoursArray[i] as JSONObject).getJSONObject("condition").getString("icon"),
                 ""
             )
+
             list.add(item)
         }
         return list
