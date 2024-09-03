@@ -20,21 +20,21 @@ object DialogManager {
         }
         dialog.show()
     }
-    fun searchByNameDialog(context: Context, listner: Listner){
-        val builder = AlertDialog.Builder(context)
-        val edName = EditText(context)
-        builder.setView(edName)
-        val dialog =  builder.create()
-        dialog.setTitle("City name:")
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok"){ _, _ ->
-            listner.onClick(edName.text.toString())
-            dialog.dismiss()
-        }
-        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel"){
-                _, _ -> dialog.dismiss()
-        }
-        dialog.show()
-    }
+//    fun searchByNameDialog(context: Context, listner: Listner){
+//        val builder = AlertDialog.Builder(context)
+//        val edName = EditText(context)
+//        builder.setView(edName)
+//        val dialog =  builder.create()
+//        dialog.setTitle("City name:")
+//        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok"){ _, _ ->
+//            listner.onClick(edName.text.toString())
+//            dialog.dismiss()
+//        }
+//        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel"){
+//                _, _ -> dialog.dismiss()
+//        }
+//        dialog.show()
+//    }
     interface Listner{
         fun onClick(name: String?)
     }

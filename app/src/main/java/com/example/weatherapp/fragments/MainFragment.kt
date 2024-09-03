@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
@@ -84,11 +85,15 @@ class MainFragment : Fragment() {
             checkLocation()
         }
         ibSearch.setOnClickListener{
-            DialogManager.searchByNameDialog(requireContext(), object: DialogManager.Listner{
-                override fun onClick(name: String?) {
-                    name?.let { it1 -> requestWeatherData(it1) }
-                }
-            })
+            ibSearch.visibility = View.GONE
+            ibSync.visibility = View.GONE
+            initSearchView()
+
+//            DialogManager.searchByNameDialog(requireContext(), object: DialogManager.Listner{
+//                override fun onClick(name: String?) {
+//                    name?.let { it1 -> requestWeatherData(it1) }
+//                }
+//            })
         }
     }
 
@@ -223,6 +228,29 @@ class MainFragment : Fragment() {
         WaitingAnimation.repeatMode = LottieDrawable.RESTART
         WaitingAnimation.playAnimation()
     }
+
+
+    private fun initSearchView() = with(binding){
+        searchWeatherView.isIconified = false
+        searchWeatherView.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                requestWeatherData(query.toString())
+                searchWeatherView.onActionViewCollapsed()
+                ibSearch.visibility = View.VISIBLE
+                ibSync.visibility = View.VISIBLE
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        }
+        )
+    }
+
+
+
 
     companion object {
         @JvmStatic
