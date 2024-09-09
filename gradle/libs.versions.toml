@@ -14,9 +14,19 @@ constraintlayout = "2.1.4"
 picasso = "2.8"
 playServicesLocation = "21.3.0"
 volley = "1.2.1"
+hiltVersion = "2.52"
+kaptVersion = "1.9.0"
+retrofitVersion = "2.11.0"
+hiltVersionNavigation = "1.2.0"
 
 
 [libraries]
+retrofit-android = { module = "com.squareup.retrofit2:retrofit",  version.ref = "retrofitVersion" }
+retrofit-android-converter = { module = "com.squareup.retrofit2:converter-gson",  version.ref = "retrofitVersion" }
+hilt-android = { module = "com.google.dagger:hilt-android",  version.ref = "hiltVersion" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-compiler",  version.ref = "hiltVersion" }
+hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose",  version.ref = "hiltVersionNavigation" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -34,4 +44,7 @@ volley = { module = "com.android.volley:volley", version.ref = "volley" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kaptVersion" }
+hiltCompiler = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+
 

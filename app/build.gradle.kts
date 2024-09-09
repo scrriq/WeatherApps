@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hiltCompiler)
 }
 
 android {
@@ -39,7 +41,16 @@ android {
 }
 
 dependencies {
-    implementation(libs.volley)
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation)
+
+    implementation(libs.retrofit.android)
+    implementation(libs.retrofit.android.converter)
     implementation(libs.picasso)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.play.services.location)
